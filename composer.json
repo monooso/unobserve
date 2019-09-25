@@ -44,5 +44,12 @@
         "psr-4": {
             "Monooso\\Unobserve\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Monooso\\Unobserve\\UnobserveServiceProvider"
+            ]
+        }
     }
 }
