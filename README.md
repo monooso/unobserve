@@ -9,9 +9,12 @@
 </p>
 
 ## About Unobserve
+When testing Laravel applications, we frequently need to "silence" events, so as not to trigger additional side-effects. [Laravel's `Event::fake` method](https://laravel.com/docs/6.x/mocking#event-fake) is useful, but muting a specific [model observer](https://laravel.com/docs/6.x/eloquent#observers) is still problematic.
+
+Unobserve takes care of that, making it easy to mute and unmute an observer at will.
 
 ## Requirements and installation
-Unobserve requires ...
+Unobserve requires PHP 7.2, and has been tested against Laravel 6. It _should_ work just fine with any recent version from the 5.x branch, but it hasn't been tested in that environment.
 
 Install Unobserve using [Composer](https://getcomposer.org/):
 
@@ -20,6 +23,27 @@ composer require monooso/unobserve
 ```
 
 ## Usage
+First, add the `CanMute` trait to your observer class.
+
+```php
+<?php
+
+namespace App\Observers;
+
+use Monooso\Unobserve\CanMute;
+
+class UserObserver
+{
+    use CanMute;
+}
+```
+
+You can now mute and unmute your observer as needed:
+
+```php
+UserObserver::mute();
+UserObserver::unmute();
+```
 
 ## License
 Unobserve is open source software, released under [the MIT license](https://github.com/monooso/unobserve/blob/master/LICENSE.txt).
