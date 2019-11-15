@@ -14,7 +14,7 @@ When testing Laravel applications, we frequently need to "silence" events, so as
 Unobserve takes care of that, making it easy to mute and unmute an observer at will.
 
 ## Requirements and installation
-Unobserve requires PHP 7.2, and has been tested against Laravel 6. It _should_ work just fine with any recent version from the 5.x branch, but it hasn't been tested in that environment.
+Unobserve requires PHP 7.2, and has been tested against Laravel 5.8 and 6.0.
 
 Install Unobserve using [Composer](https://getcomposer.org/):
 
