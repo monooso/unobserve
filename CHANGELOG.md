@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Added
 - Support for PHP 8
 
+### Removed
+- Removed support for PHP 7.x
+
 ## [[3.0.0] - 2020-10-10](https://github.com/monooso/unobserve/releases/tag/v3.0.0) 
 ### Added
 - Support for Laravel 8

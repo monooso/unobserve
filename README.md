@@ -20,7 +20,14 @@ Select the appropriate branch for your version of Laravel.
 |:-------|:-----------------|:------------|
 | 1.x    | `^5.8`, `^6.0`   | `^7.2`      |
 | 2.x    | `^7.0`           | `^7.2.5`    |
+<<<<<<< HEAD
 | 3.x    | `^8.0`           | `^7.3.0`/`^8.0` |
+||||||| parent of 0dd2c72 (Drop support for PHP < 8.0)
+| 3.x    | `^8.0`           | `^7.3.0`    |
+=======
+| 3.x    | `^8.0`           | `^7.3.0`    |
+| 4.x    | `^8.0`           | `^8.0.0`    |
+>>>>>>> 0dd2c72 (Drop support for PHP < 8.0)
 
 Install Unobserve using [Composer](https://getcomposer.org/):
 
