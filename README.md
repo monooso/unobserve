@@ -9,7 +9,7 @@
 </p>
 
 ## About Unobserve
-When testing Laravel applications, we frequently need to "silence" events, so as not to trigger additional side-effects. [Laravel's `Event::fake` method](https://laravel.com/docs/6.x/mocking#event-fake) is useful, but muting a specific [model observer](https://laravel.com/docs/6.x/eloquent#observers) is still problematic.
+When testing Laravel applications, we frequently need to "silence" events, so as not to trigger additional side-effects. [Laravel's `Event::fake` method](https://laravel.com/docs/8.x/mocking#event-fake) is useful, but muting a specific [model observer](https://laravel.com/docs/8.x/eloquent#observers) is still problematic.
 
 Unobserve takes care of that, making it easy to mute and unmute an observer at will.
 
