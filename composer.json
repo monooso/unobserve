@@ -54,6 +54,6 @@
     },
     "scripts": {
         "lint": "phpcs src --standard=PSR2",
-        "test": "phpunit --coverage-clover=coverage.xml"
+        "test": "XDEBUG_MODE=coverage phpunit --coverage-clover=coverage.xml"
     }
 }
