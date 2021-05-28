@@ -3,8 +3,8 @@ name: lint-and-test
 on: [push]
 
 jobs:
-  build:
-    runs-on: 'ubuntu-latest'
+  setup:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -24,8 +24,14 @@ jobs:
       - name: Install dependencies
         run: composer install --dev --prefer-dist --no-progress
 
-      - name: Lint code
-        run: composer run-script lint
+  lint:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - run: composer run-script lint
 
-      - name: Run test suite
-        run: composer run-script test
+  test:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - run: composer run-script test
