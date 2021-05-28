@@ -3,7 +3,7 @@ name: lint-and-test
 on: [push]
 
 jobs:
-  setup:
+  lint-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -24,14 +24,8 @@ jobs:
       - name: Install dependencies
         run: composer install --dev --prefer-dist --no-progress
 
-  lint:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - run: composer run-script lint
+      - name: Lint code
+        run: composer run-script lint
 
-  test:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - run: composer run-script test
+      - name: Run test suite
+        run: composer run-script test
