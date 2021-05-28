@@ -51,5 +51,9 @@
                 "Monooso\\Unobserve\\UnobserveServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "lint": "phpcs src --standard=PSR2",
+        "test": "phpunit"
     }
 }
