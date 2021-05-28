@@ -1,6 +1,10 @@
 name: lint-and-test
 
-on: [push]
+on:
+  pull_request:
+    branches: ['*']
+  push:
+    branches: ['main', 'v*.*']
 
 jobs:
   lint-and-test:
