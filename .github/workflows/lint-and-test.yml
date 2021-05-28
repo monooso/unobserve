@@ -22,7 +22,7 @@ jobs:
             ${{ runner.os }}-php-
 
       - name: Install dependencies
-        run: composer install --dev --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-progress
 
       - name: Lint code
         run: composer run-script lint
