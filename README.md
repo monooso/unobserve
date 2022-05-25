@@ -53,5 +53,20 @@ UserObserver::mute();
 UserObserver::unmute();
 ```
 
+## Mute options
+
+Mute all events of the observer:
+
+```php
+UserObserver::mute();
+```
+
+Mute only specific events from the observer:
+
+```php
+UserObserver::mute('creating');
+UserObserver::mute(['creating', 'created']);
+```
+
 ## License
 Unobserve is open source software, released under [the MIT license](https://github.com/monooso/unobserve/blob/master/LICENSE.txt).
