@@ -1,7 +1,7 @@
 # Unobserve
 
 <p>
-  <img src="https://github.com/monooso/unobserve/actions/workflows/lint-and-test.yml/badge.svg" alt="Lint and Test Status"/></a>
+  <a href="https://github.com/monooso/unobserve/actions/workflows/lint-and-test.yml"><img src="https://github.com/monooso/unobserve/actions/workflows/lint-and-test.yml/badge.svg" alt="Lint and Test Status"/></a>
   <a href="https://scrutinizer-ci.com/g/monooso/unobserve"><img src="https://img.shields.io/scrutinizer/g/monooso/unobserve.svg" alt="Quality Score"/></a>
   <a href="https://scrutinizer-ci.com/g/monooso/unobserve"><img src="https://img.shields.io/scrutinizer/coverage/g/monooso/unobserve.svg" alt="Coverage"/></a>
   <a href="https://packagist.org/packages/monooso/unobserve"><img src="https://poser.pugx.org/monooso/unobserve/v/stable.svg" alt="Latest Stable Version"/></a>
