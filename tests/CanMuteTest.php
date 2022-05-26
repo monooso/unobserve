@@ -3,6 +3,7 @@
 namespace Monooso\Unobserve\Tests;
 
 use Monooso\Unobserve\CanMute;
+use Monooso\Unobserve\Proxy;
 use Orchestra\Testbench\TestCase;
 
 class CanMuteTest extends TestCase
@@ -51,6 +52,16 @@ class CanMuteTest extends TestCase
         $this->assertSame('cloaked', $target->cloaked());
         $this->assertSame('uncloaked', $target->uncloaked());
     }
+
+    /** @test */
+    public function it_mutes_class_with_constructor_injection()
+    {
+        WithConstructorInjection::mute();
+
+        $target = resolve(WithConstructorInjection::class);
+
+        $this->assertInstanceOf(Proxy::class, $target);
+    }
 }
 
 class CanMuteTarget
@@ -65,5 +76,14 @@ class CanMuteTarget
     public function uncloaked()
     {
         return 'uncloaked';
+    }
+}
+
+class WithConstructorInjection
+{
+    use CanMute;
+
+    public function __construct(private CanMuteTarget $injection)
+    {
     }
 }
