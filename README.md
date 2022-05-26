@@ -55,13 +55,13 @@ UserObserver::unmute();
 
 ## Mute options
 
-Mute all events of the observer:
+Mute all observer events:
 
 ```php
 UserObserver::mute();
 ```
 
-Mute only specific events from the observer:
+Mute specific observer events:
 
 ```php
 UserObserver::mute('creating');
