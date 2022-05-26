@@ -9,7 +9,7 @@ use Orchestra\Testbench\TestCase;
 class CanMuteTest extends TestCase
 {
     /** @test */
-    public function it_mutes_an_array_of_events()
+    public function it_mutes_an_array_of_events(): void
     {
         CanMuteTarget::mute(['cloaked']);
 
@@ -20,7 +20,7 @@ class CanMuteTest extends TestCase
     }
 
     /** @test */
-    public function it_mutes_a_single_event()
+    public function it_mutes_a_single_event(): void
     {
         CanMuteTarget::mute('cloaked');
 
@@ -31,7 +31,7 @@ class CanMuteTest extends TestCase
     }
 
     /** @test */
-    public function it_mutes_all_events()
+    public function it_mutes_all_events(): void
     {
         CanMuteTarget::mute();
 
@@ -42,7 +42,7 @@ class CanMuteTest extends TestCase
     }
 
     /** @test */
-    public function it_unmutes_all_events()
+    public function it_unmutes_all_events(): void
     {
         CanMuteTarget::mute();
         CanMuteTarget::unmute();
@@ -54,7 +54,7 @@ class CanMuteTest extends TestCase
     }
 
     /** @test */
-    public function it_mutes_class_with_constructor_injection()
+    public function it_mutes_class_with_constructor_injection(): void
     {
         WithConstructorInjection::mute();
 
@@ -64,7 +64,7 @@ class CanMuteTest extends TestCase
     }
 
     /** @test */
-    public function it_resolves_to_proxy_on_mute()
+    public function it_resolves_to_proxy_on_mute(): void
     {
         CanMuteTarget::mute();
 
@@ -74,7 +74,7 @@ class CanMuteTest extends TestCase
     }
 
     /** @test */
-    public function it_resolves_back_to_class_on_unmute()
+    public function it_resolves_back_to_class_on_unmute(): void
     {
         CanMuteTarget::mute();
         CanMuteTarget::unmute();
@@ -89,12 +89,12 @@ class CanMuteTarget
 {
     use CanMute;
 
-    public function cloaked()
+    public function cloaked(): string
     {
         return 'cloaked';
     }
 
-    public function uncloaked()
+    public function uncloaked(): string
     {
         return 'uncloaked';
     }

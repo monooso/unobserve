@@ -9,7 +9,7 @@ use Orchestra\Testbench\TestCase;
 class ProxyManagerTest extends TestCase
 {
     /** @test */
-    public function it_registers_a_proxy_with_the_service_container()
+    public function it_registers_a_proxy_with_the_service_container(): void
     {
         $app = $this->resolveApplication();
 
@@ -20,7 +20,7 @@ class ProxyManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_unregisters_a_proxy()
+    public function it_unregisters_a_proxy(): void
     {
         $app = $this->resolveApplication();
 

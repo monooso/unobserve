@@ -9,7 +9,7 @@ use Orchestra\Testbench\TestCase;
 class ProxyTest extends TestCase
 {
     /** @test */
-    public function it_swallows_cloaked_events()
+    public function it_swallows_cloaked_events(): void
     {
         $target = new ProxyTarget;
 
@@ -19,7 +19,7 @@ class ProxyTest extends TestCase
     }
 
     /** @test */
-    public function it_passes_uncloaked_events_to_the_observer()
+    public function it_passes_uncloaked_events_to_the_observer(): void
     {
         $target = new ProxyTarget;
 
@@ -29,7 +29,7 @@ class ProxyTest extends TestCase
     }
 
     /** @test */
-    public function it_swallows_all_events()
+    public function it_swallows_all_events(): void
     {
         $target = new ProxyTarget;
         $proxy = new Proxy($target, ['*']);
@@ -39,7 +39,7 @@ class ProxyTest extends TestCase
     }
 
     /** @test */
-    public function it_raises_an_exception_for_unknown_methods()
+    public function it_raises_an_exception_for_unknown_methods(): void
     {
         $target = new ProxyTarget;
 
@@ -51,12 +51,12 @@ class ProxyTest extends TestCase
 
 class ProxyTarget
 {
-    public function uncloaked()
+    public function uncloaked(): string
     {
         return 'uncloaked';
     }
 
-    public function cloaked()
+    public function cloaked(): string
     {
         return 'cloaked';
     }

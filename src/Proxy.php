@@ -6,13 +6,11 @@ use BadMethodCallException;
 
 class Proxy
 {
-    /** @var object */
-    private $target;
+    private object $target;
 
-    /** @var array */
-    private $events;
+    private array $events;
 
-    public function __construct($target, array $events = [])
+    public function __construct(object $target, array $events = [])
     {
         $this->target = $target;
         $this->events = $events;
