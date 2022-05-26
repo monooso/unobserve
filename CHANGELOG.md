@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [[5.0.0] - 2022-04-26](https://github.com/monooso/unobserve/releases/tag/v5.0.0)
+### Added
+- Support for Laravel 9
+
 ## [[4.0.0] - 2021-05-24](https://github.com/monooso/unobserve/releases/tag/v4.0.0)
 ### Added
 - Support for PHP 8

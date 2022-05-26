@@ -14,3 +14,10 @@
 # Logs
 npm-debug.log
 yarn-error.log
+
+# IDEs
+.idea/
+.vscode/
+
+# Operating system
+.DS_Store
