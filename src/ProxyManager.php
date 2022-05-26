@@ -2,7 +2,7 @@
 
 namespace Monooso\Unobserve;
 
-use Illuminate\Contracts\Container\Container;
+use Illuminate\Container\Container;
 
 class ProxyManager
 {
@@ -21,8 +21,8 @@ class ProxyManager
         $this->app->instance(get_class($target), $proxy);
     }
 
-    public function unregister($target)
+    public function unregister(string $targetClass)
     {
-        $this->app->instance(get_class($target), $target);
+        $this->app->forgetInstance($targetClass);
     }
 }

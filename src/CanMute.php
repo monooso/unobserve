@@ -6,7 +6,7 @@ trait CanMute
 {
     public static function mute($events = null)
     {
-        $instance = new static();
+        $instance = resolve(static::class);
         resolve(ProxyManager::class)->register($instance, static::normalizeEvents($events));
     }
 
@@ -25,6 +25,6 @@ trait CanMute
 
     public static function unmute()
     {
-        resolve(ProxyManager::class)->unregister(new static);
+        resolve(ProxyManager::class)->unregister(static::class);
     }
 }

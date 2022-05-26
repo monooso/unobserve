@@ -25,7 +25,7 @@ class ProxyManagerTest extends TestCase
         $app = $this->resolveApplication();
 
         $manager = new ProxyManager($app);
-        $manager->unregister(new ProxyManagerTarget);
+        $manager->unregister(ProxyManagerTarget::class);
 
         $this->assertInstanceOf(ProxyManagerTarget::class, $app->make(ProxyManagerTarget::class));
     }
