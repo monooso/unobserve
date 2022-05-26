@@ -62,6 +62,27 @@ class CanMuteTest extends TestCase
 
         $this->assertInstanceOf(Proxy::class, $target);
     }
+
+    /** @test */
+    public function it_resolves_to_proxy_on_mute()
+    {
+        CanMuteTarget::mute();
+
+        $target = resolve(CanMuteTarget::class);
+
+        $this->assertInstanceOf(Proxy::class, $target);
+    }
+
+    /** @test */
+    public function it_resolves_back_to_class_on_unmute()
+    {
+        CanMuteTarget::mute();
+        CanMuteTarget::unmute();
+
+        $target = resolve(CanMuteTarget::class);
+
+        $this->assertInstanceOf(CanMuteTarget::class, $target);
+    }
 }
 
 class CanMuteTarget
