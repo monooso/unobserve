@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 
 class UnobserveServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    public function register()
+    public function register(): void
     {
         parent::register();
 
@@ -20,7 +20,7 @@ class UnobserveServiceProvider extends ServiceProvider implements DeferrableProv
         });
     }
 
-    public function provides()
+    public function provides(): array
     {
         return [ProxyManager::class, Proxy::class];
     }
