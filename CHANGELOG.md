@@ -3,12 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [[X.X.X] - 2022-05-26](https://github.com/monooso/unobserve/releases/tag/vX.X.X)
-### Changed
-- changed resolve of the muted class to allow constructor injection
-
+## [[5.1.0] - 2022-06-06](https://github.com/monooso/unobserve/releases/tag/v5.1.0)
 ### Added
-- PHP 8 conform type hinting
+- Added support for classes that use constructor injection, courtesy of [Sergej Tihonov](https://github.com/Sergej-Tihonov)
+
+### Changed
+- Improved PHP 8 type hinting, courtesy of [Sergej Tihonov](https://github.com/Sergej-Tihonov)
 
 ## [[5.0.1] - 2022-05-26](https://github.com/monooso/unobserve/releases/tag/v5.0.1)
 ### Changed
