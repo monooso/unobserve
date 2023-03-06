@@ -22,7 +22,7 @@ Select the appropriate branch for your version of Laravel.
 | 2.x    | `^7.0`           | `^7.2.5`    |
 | 3.x    | `^8.0`           | `^7.3.0`    |
 | 4.x    | `^8.0`           | `^8.0.0`    |
-| 5.x    | `^9.0`           | `^8.0.0`    |
+| 5.x    | `^9.0`, `^10.0`  | `^8.0.0`    |
 
 Install Unobserve using [Composer](https://getcomposer.org/):
 
