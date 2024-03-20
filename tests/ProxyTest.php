@@ -5,10 +5,11 @@ namespace Monooso\Unobserve\Tests;
 use BadMethodCallException;
 use Monooso\Unobserve\Proxy;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ProxyTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_swallows_cloaked_events(): void
     {
         $target = new ProxyTarget;
@@ -18,7 +19,7 @@ class ProxyTest extends TestCase
         $this->assertNull($actual);
     }
 
-    /** @test */
+    #[Test]
     public function it_passes_uncloaked_events_to_the_observer(): void
     {
         $target = new ProxyTarget;
@@ -28,7 +29,7 @@ class ProxyTest extends TestCase
         $this->assertSame('uncloaked', $actual);
     }
 
-    /** @test */
+    #[Test]
     public function it_swallows_all_events(): void
     {
         $target = new ProxyTarget;
@@ -38,7 +39,7 @@ class ProxyTest extends TestCase
         $this->assertNull($proxy->uncloaked());
     }
 
-    /** @test */
+    #[Test]
     public function it_raises_an_exception_for_unknown_methods(): void
     {
         $target = new ProxyTarget;

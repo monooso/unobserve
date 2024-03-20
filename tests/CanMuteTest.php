@@ -5,10 +5,11 @@ namespace Monooso\Unobserve\Tests;
 use Monooso\Unobserve\CanMute;
 use Monooso\Unobserve\Proxy;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CanMuteTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_mutes_an_array_of_events(): void
     {
         CanMuteTarget::mute(['cloaked']);
@@ -19,7 +20,7 @@ class CanMuteTest extends TestCase
         $this->assertSame('uncloaked', $target->uncloaked());
     }
 
-    /** @test */
+    #[Test]
     public function it_mutes_a_single_event(): void
     {
         CanMuteTarget::mute('cloaked');
@@ -30,7 +31,7 @@ class CanMuteTest extends TestCase
         $this->assertSame('uncloaked', $target->uncloaked());
     }
 
-    /** @test */
+    #[Test]
     public function it_mutes_all_events(): void
     {
         CanMuteTarget::mute();
@@ -41,7 +42,7 @@ class CanMuteTest extends TestCase
         $this->assertNull($target->uncloaked());
     }
 
-    /** @test */
+    #[Test]
     public function it_unmutes_all_events(): void
     {
         CanMuteTarget::mute();
@@ -53,7 +54,7 @@ class CanMuteTest extends TestCase
         $this->assertSame('uncloaked', $target->uncloaked());
     }
 
-    /** @test */
+    #[Test]
     public function it_mutes_class_with_constructor_injection(): void
     {
         WithConstructorInjection::mute();
@@ -63,7 +64,7 @@ class CanMuteTest extends TestCase
         $this->assertInstanceOf(Proxy::class, $target);
     }
 
-    /** @test */
+    #[Test]
     public function it_resolves_to_proxy_on_mute(): void
     {
         CanMuteTarget::mute();
@@ -73,7 +74,7 @@ class CanMuteTest extends TestCase
         $this->assertInstanceOf(Proxy::class, $target);
     }
 
-    /** @test */
+    #[Test]
     public function it_resolves_back_to_class_on_unmute(): void
     {
         CanMuteTarget::mute();

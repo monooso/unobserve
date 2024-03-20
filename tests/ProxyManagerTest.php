@@ -5,10 +5,11 @@ namespace Monooso\Unobserve\Tests;
 use Monooso\Unobserve\Proxy;
 use Monooso\Unobserve\ProxyManager;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ProxyManagerTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_registers_a_proxy_with_the_service_container(): void
     {
         $app = $this->resolveApplication();
@@ -19,7 +20,7 @@ class ProxyManagerTest extends TestCase
         $this->assertInstanceOf(Proxy::class, $app->make(ProxyManagerTarget::class));
     }
 
-    /** @test */
+    #[Test]
     public function it_unregisters_a_proxy(): void
     {
         $app = $this->resolveApplication();
