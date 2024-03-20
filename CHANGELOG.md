@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [[6.0.0] - 2024-03-20](https://github.com/monooso/unobserve/releases/tag/v6.0.0)
+### Changed
+- Dropped support for versions of Laravel <= 11.0
+- Updated tests to work with PHPUnit 11
+- Reorganised code quality tooling
+
 ## [[5.1.0] - 2022-06-06](https://github.com/monooso/unobserve/releases/tag/v5.1.0)
 ### Added
 - Added support for classes that use constructor injection, courtesy of [Sergej Tihonov](https://github.com/Sergej-Tihonov)
