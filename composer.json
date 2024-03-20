@@ -52,7 +52,8 @@
         }
     },
     "scripts": {
-        "lint": "phpcs src --standard=PSR2",
+        "lint-check": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --config tools/php-cs-fixer/.php-cs-fixer.php --dry-run --diff",
+        "lint-fix": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --config tools/php-cs-fixer/.php-cs-fixer.php",
         "test": "phpunit"
     }
 }

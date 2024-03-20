@@ -9,7 +9,6 @@ vendor/
 
 # Configuration
 .env
-.php_cs
 .yo-rc.json
 
 # Logs

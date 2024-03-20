@@ -68,5 +68,17 @@ UserObserver::mute('creating');
 UserObserver::mute(['creating', 'created']);
 ```
 
+## Development
+Unobserve is very stable at this point. If you have any feature ideas please [open an issue](https://github.com/monooso/unobserve/issues/new) before doing any work.
+
+Here's how to set everything up for local development on Unobserve [^development]:
+
+[^development]: I'm assuming you know your way around PHP, and already have your environment set up.
+
+1. Clone the repository.
+2. Install the dependencies by running `composer install`.
+3. Install the code quality tools by running `composer install --working-dir=tools/php-cs-fixer`.
+4. Set your Git hooks directory to `.githooks` by running `git config core.hooksPath .githooks`.
+
 ## License
 Unobserve is open source software, released under [the MIT license](https://github.com/monooso/unobserve/blob/master/LICENSE.txt).
