@@ -25,8 +25,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-
 
-      - name: Install dependencies
+      - name: Install package dependencies
         run: composer install --prefer-dist --no-progress
+
+      - name: Install code quality tools
         run: composer install --prefer-dist --no-progress --working-dir=tools/php-cs-fixer
 
       - name: Check linting
