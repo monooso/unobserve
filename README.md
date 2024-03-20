@@ -14,16 +14,16 @@ When testing Laravel applications, we frequently need to "silence" events, so as
 Unobserve takes care of that, making it easy to mute and unmute an observer at will.
 
 ## Requirements and installation
-Select the appropriate branch for your version of Laravel.
+Select the appropriate version of Unobserve from the following table.
 
-| Branch | Laravel Versions | PHP Version |
+| Unobserve | Laravel | PHP |
 |:-------|:-----------------|:------------|
 | 1.x    | `^5.8`, `^6.0`   | `^7.2`      |
 | 2.x    | `^7.0`           | `^7.2.5`    |
 | 3.x    | `^8.0`           | `^7.3.0`    |
 | 4.x    | `^8.0`           | `^8.0.0`    |
 | 5.x    | `^9.0`, `^10.0`  | `^8.0.0`    |
-| main   | `^11.0`          | `^8.2.0`    |
+| 6.x    | `^11.0`          | `^8.2.0`    |
 
 Install Unobserve using [Composer](https://getcomposer.org/):
 
