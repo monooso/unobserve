@@ -1,6 +1,6 @@
 <?php
 
-$finder = PhpCsFixer\Finder::create()
+$finder = (new PhpCsFixer\Finder())
     ->in(__DIR__)
     ->exclude(['bootstrap', 'storage', 'vendor'])
     ->notPath('_ide_helper.php')
@@ -9,15 +9,15 @@ $finder = PhpCsFixer\Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRules([
-        '@PSR2'                             => true,
+        '@PSR12'                            => true,
         'array_syntax'                      => ['syntax' => 'short'],
         'binary_operator_spaces'            => ['operators' => ['=>' => 'align']],
         'no_unused_imports'                 => true,
-        'ordered_imports'                   => ['sortAlgorithm' => 'alpha'],
+        'ordered_imports'                   => ['sort_algorithm' => 'alpha'],
         'standardize_not_equals'            => true,
-        'trailing_comma_in_multiline_array' => true,
+        'trailing_comma_in_multiline'       => ['elements' => ['arrays']],
         'trim_array_spaces'                 => true,
     ])
     ->setFinder($finder);
