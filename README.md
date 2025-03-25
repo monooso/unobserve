@@ -23,7 +23,7 @@ Select the appropriate version of Unobserve from the following table.
 | 3.x    | `^8.0`           | `^7.3.0`    |
 | 4.x    | `^8.0`           | `^8.0.0`    |
 | 5.x    | `^9.0`, `^10.0`  | `^8.0.0`    |
-| 6.x    | `^11.0`          | `^8.2.0`    |
+| 6.x    | `^11.0`, `12.0`  | `^8.2.0`    |
 
 Install Unobserve using [Composer](https://getcomposer.org/):
 
