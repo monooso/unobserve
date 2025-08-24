@@ -5,7 +5,7 @@ namespace Monooso\Unobserve;
 trait CanMute
 {
     /** @param string|string[] $events */
-    public static function mute(string|array $events = null): void
+    public static function mute(string|array|null $events = null): void
     {
         $instance = resolve(static::class);
         resolve(ProxyManager::class)->register($instance, static::normalizeEvents($events));
