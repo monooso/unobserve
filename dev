@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+#
+# dev — friction-free PHP / Composer / PHPUnit for this project, via Podman.
+#
+# Nothing PHP-related is installed on your host. Pick a PHP version and run
+# commands against your live working tree. Changes to composer.json and
+# composer.lock are written back to disk so you can commit them.
+#
+# USAGE
+#   ./dev <php-version> [command...]        Run a command (default: a shell)
+#   ./dev build <php-version>               (Re)build the image for a version
+#   ./dev --help                            Show this help
+#
+# THE UPGRADE LOOP  (the thing you actually do here)
+#   1. Branch off, then edit composer.json to widen the constraints, e.g.
+#        "php": "^8.2",
+#        "illuminate/contracts": "^10.0",
+#        "illuminate/support": "^10.0"
+#   2. Re-resolve dependencies for the target PHP (rewrites composer.lock):
+#        ./dev 8.2 composer update
+#   3. If that conflicts, find out why, then iterate:
+#        ./dev 8.2 composer why-not laravel/framework 10.0.0
+#        ./dev 8.2 composer require illuminate/support:"^10.0" --no-update
+#        ./dev 8.2 composer update
+#   4. Run the tests:
+#        ./dev 8.2 test          # alias for: composer test
+#   5. Commit composer.json + composer.lock.
+#
+# Try several PHP versions just as easily (each keeps its own vendor/ cache):
+#   ./dev 8.1 test
+#   ./dev 8.2 test
+#   ./dev 8.3 test
+#
+# ALIASES
+#   test    -> composer test       (runs phpunit)
+#   lint    -> composer lint       (runs phpcs)
+#   install -> composer install
+#   update  -> composer update
+#
+# Anything else is passed straight through, e.g.:
+#   ./dev 8.3 php -v
+#   ./dev 8.3 composer outdated
+#   ./dev 8.3 vendor/bin/phpunit --filter ApplyWhen
+#
+# NOTES
+#   * First run on a given PHP version builds the image automatically.
+#   * Dependencies live in a per-version Podman volume (unobserve-vendor-php<x>);
+#     Composer's download cache is shared across versions (unobserve-composer-cache).
+#   * `./dev <ver> test` will run `composer install` first if vendor/ is missing,
+#     so you can't accidentally run tests without dependencies.
+#
+
+set -euo pipefail
+
+IMAGE_PREFIX="localhost/unobserve"
+CONTEXT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+usage() {
+  sed -n '3,/^set -euo pipefail$/p' "$0" | sed 's/^# \{0,1\}//'
+  exit 0
+}
+
+die() { echo "dev: $*" >&2; exit 1; }
+
+image_for()   { echo "${IMAGE_PREFIX}:php$1"; }
+vendor_vol()  { echo "unobserve-vendor-php$1"; }
+cache_vol()   { echo "unobserve-composer-cache"; }
+
+build_image() {
+  local ver="$1"
+  local tag; tag="$(image_for "$ver")"
+  echo "dev: building ${tag} (PHP ${ver})" >&2
+  podman build --build-arg "PHP_VERSION=${ver}" -t "${tag}" "${CONTEXT}"
+}
+
+# Returns 0 if the command needs vendor/ to be present (and so should trigger an
+# automatic `composer install` when it is missing).
+needs_deps() {
+  local first="${1:-}" second="${2:-}"
+  case "$first" in
+    test|lint|phpunit) return 0 ;;
+    composer) case "$second" in test|lint) return 0 ;; esac ;;
+  esac
+  return 1
+}
+
+run() {
+  local ver="$1"; shift
+  [[ -n "$ver" ]] || die "missing PHP version (try: ./dev --help)"
+
+  local tag; tag="$(image_for "$ver")"
+  if ! podman image exists "${tag}" 2>/dev/null; then
+    build_image "$ver"
+  fi
+
+  # Build the command array, expanding aliases.
+  local cmd=()
+  if [[ $# -gt 0 ]]; then
+    case "$1" in
+      test|lint|install|update|require|remove) cmd=(composer "$@") ;;
+      *) cmd=("$@") ;;
+    esac
+  else
+    cmd=(bash)
+  fi
+
+  local env=(-e "DEV_PHP=${ver}")
+  if needs_deps "${cmd[@]:-}"; then env+=(-e DEV_ENSURE_DEPS=1); fi
+
+  local tty=()
+  [[ -t 0 ]] && tty=(--interactive --tty)
+
+  # :z relabels the bind-mounted tree to container_file_t so SELinux lets the
+  # confined container read your source. It's harmless to host access (your
+  # login session is unconfined) and self-healing on each run.
+  podman run --rm "${tty[@]}" "${env[@]}" \
+    -v "${CONTEXT}":/app:z \
+    -v "$(vendor_vol "${ver}")":/app/vendor \
+    -v "$(cache_vol)":/tmp/composer \
+    -w /app \
+    "${tag}" \
+    sh -lc '
+      if [ "${DEV_ENSURE_DEPS:-}" = "1" ] && [ ! -f vendor/autoload.php ]; then
+        echo "dev: vendor/ not present - running composer install..." >&2
+        composer install || {
+          echo "dev: composer install failed." >&2
+          echo "dev: if composer.lock targets a different PHP, try: ./dev ${DEV_PHP} update" >&2
+          exit 1
+        }
+      fi
+      exec "$@"
+    ' -- "${cmd[@]}"
+}
+
+main() {
+  case "${1:-}" in
+    -h|--help|help|"") usage ;;
+    build)
+      [[ $# -ge 2 ]] || die "usage: ./dev build <php-version>"
+      build_image "${2:?missing PHP version}"
+      ;;
+    *)
+      run "$@"
+      ;;
+  esac
+}
+
+main "$@"
