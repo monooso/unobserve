@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [8.2, 8.3]
+        php: [8.3, 8.4, 8.5]
 
     name: PHP ${{ matrix.php }}
 
@@ -43,11 +43,8 @@ jobs:
       - name: Install package dependencies
         run: composer install --prefer-dist --no-progress
 
-      - name: Install code quality tools
-        run: composer install --prefer-dist --no-progress --working-dir=tools/php-cs-fixer
-
       - name: Check linting
-        run: composer run-script lint-check
+        run: composer run-script lint
 
       - name: Run test suite
         run: composer run-script test
