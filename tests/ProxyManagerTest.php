@@ -32,6 +32,4 @@ class ProxyManagerTest extends TestCase
     }
 }
 
-class ProxyManagerTarget
-{
-}
+class ProxyManagerTarget {}

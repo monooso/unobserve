@@ -105,7 +105,5 @@ class WithConstructorInjection
 {
     use CanMute;
 
-    public function __construct(private CanMuteTarget $injection)
-    {
-    }
+    public function __construct(private CanMuteTarget $injection) {}
 }

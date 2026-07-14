@@ -6,9 +6,7 @@ use Illuminate\Container\Container;
 
 class ProxyManager
 {
-    public function __construct(private Container $app)
-    {
-    }
+    public function __construct(private Container $app) {}
 
     public function register(object $target, array $events): void
     {

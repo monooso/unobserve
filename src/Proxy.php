@@ -35,6 +35,6 @@ class Proxy
 
     protected function isMuted($name): bool
     {
-        return (in_array('*', $this->events) || in_array($name, $this->events));
+        return in_array('*', $this->events) || in_array($name, $this->events);
     }
 }
